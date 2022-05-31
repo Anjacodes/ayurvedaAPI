@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dosha: one
+  food: one
+
+two:
+  dosha: two
+  food: two
