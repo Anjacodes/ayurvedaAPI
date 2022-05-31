@@ -1,2 +1,0 @@
-class DoshaFoodsController < ApplicationController
-end

@@ -1,4 +1,4 @@
 class DoshaFood < ApplicationRecord
   belongs_to :dosha
-  belongs_to :food
+  belongs_to :food, dependent: :destroy
 end
