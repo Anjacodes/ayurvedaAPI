@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   get "api/foodsbydosha/:dosha_id", to: "api/foods#foods_by_dosha"
   get "api/foodsbydosha/:dosha_id/:category_id", to: "api/foods#foods_for_dosha_by_category"
 
+  get "api/recipesbydosha/:id", to: "api/recipes#recipes_by_dosha"
+
   namespace :api, defaults: { format: :json } do
     resources :doshas, :dosha_foods
 
     resources :categories, only: [:index, :show]
 
     resources :foods
+
+    resources :recipes
   end
 end
