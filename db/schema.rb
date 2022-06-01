@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_27_220640) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_01_214602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_220640) do
     t.index ["food_id"], name: "index_dosha_foods_on_food_id"
   end
 
+  create_table "dosha_recipes", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "dosha_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dosha_id"], name: "index_dosha_recipes_on_dosha_id"
+    t.index ["recipe_id"], name: "index_dosha_recipes_on_recipe_id"
+  end
+
   create_table "doshas", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -45,11 +54,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_27_220640) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id", null: false
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_foods_on_category_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "meal"
+    t.string "season"
+    t.string "taste"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "dosha_foods", "doshas"
   add_foreign_key "dosha_foods", "foods"
+  add_foreign_key "dosha_recipes", "doshas"
+  add_foreign_key "dosha_recipes", "recipes"
   add_foreign_key "foods", "categories"
 end
